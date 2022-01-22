@@ -21,8 +21,8 @@ router.post("/signup", async (req, res) => {
             throw error;
         });
         res.status(responseEntity.statusCode).json(responseEntity.data);
-    } catch (exception) {
-        routeFunctionErrorHandler(res, exception, null);
+    } catch (e) {
+        next(e, req, res);
     }
 });
 
@@ -43,8 +43,8 @@ router.post("/signin", async (req, res) => {
             throw error;
         });
         res.status(responseEntity.statusCode).json(responseEntity.data);
-    } catch (exception) {
-        routeFunctionErrorHandler(res, exception, null);
+    } catch (e) {
+        next(e, req, res);
     }
 });
 
@@ -60,8 +60,8 @@ router.get("/", ensureToken, async (req, res) => {
             throw error;
         });
         res.status(responseEntity.statusCode).json(responseEntity.data);
-    } catch (exception) {
-        routeFunctionErrorHandler(res, exception, null);
+    } catch (e) {
+        next(e, req, res);
     }
 })
 
@@ -87,7 +87,7 @@ router.put("/", ensureToken, async (req, res) => {
         });
         res.status(responseEntity.statusCode).json(responseEntity.data);
     } catch (exception) {
-        routeFunctionErrorHandler(res, exception, null);
+        next(e, req, res);
     }
 })
 
@@ -109,8 +109,8 @@ router.delete("/", ensureToken, async (req, res) => {
             throw error;
         });
         res.status(responseEntity.statusCode).json(responseEntity.data);
-    } catch (exception) {
-        routeFunctionErrorHandler(res, exception, null);
+    } catch (e) {
+        next(e, req, res);
     }
 })
 
@@ -128,7 +128,7 @@ router.get("/whoami", ensureToken, async (req, res) => {
         });
         res.status(responseEntity.statusCode).json(responseEntity.data);
     } catch (exception) {
-        routeFunctionErrorHandler(res, exception, null);
+        next(e, req, res);
     }
 })
 
@@ -153,8 +153,9 @@ router.post("/addCredit", ensureToken, async (req, res) => {
         });
         res.status(responseEntity.statusCode).json(responseEntity.data);
     } catch (exception) {
-        routeFunctionErrorHandler(res, exception, null);
+        next(e, req, res);
     }
-})
+});
+
 
 module.exports = router

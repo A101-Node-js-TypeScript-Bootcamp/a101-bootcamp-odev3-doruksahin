@@ -83,7 +83,6 @@ async function addCredit(myUser) {
 
 
 module.exports = {
-    createUser,
     signin,
     deleteUser,
     updateUser,
