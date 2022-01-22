@@ -19,7 +19,7 @@ server.use(express.json())
 server.use("/api", apiRouter)
 server.use('/doc', swaggerUi.serve, swaggerUi.setup(swaggerFile))
 // logErrorMiddleware is a middleware, which works when route function goes to catch.
-router.use(logErrorMiddleware)
+server.use(logErrorMiddleware)
 
 server.listen(5000, () => {
     console.log("https://localhost:5000 is listening.")
